@@ -1,0 +1,321 @@
+1. N-Queens with First Queen placed program:
+We solve the N-Queens problem using Backtracking.
+First queen is fixed at a given position (zeroth{0} row, first{1} column).
+Then, we place one queen per row by checking column and diagonal safety.
+If a position is unsafe, we backtrack and try another position.
+When all N queens are placed successfully, we print the board.
+
+What is backtracking?
+Ans: Backtracking is a trial-and-error method where we build a solution step-by-step and undo steps (backtrack) when a choice leads to failure.
+Operation	Complexity
+Time		O(N!) (worst case)
+Space		O(N²) for board + recursion stack
+
+Why do we fix the first queen?
+Ans:To reduce search space and generate valid configuration from a constrained start position.
+
+2. Fibonacci Series:
+
+The Fibonacci series is a sequence where each number is the sum of the two preceding numbers.
+F(n) = F(n-1) + F(n-2) with base conditions:
+F(0) = 0, F(1) = 1
+
+Two approaches:
+Recursive approach → uses function calls repeatedly
+Iterative (non-recursive) approach → uses loops
+
+What is the difference between recursive and iterative approach?
+Ans:
+Recursive: Uses function calls (stack memory).
+Iterative: Uses loops (no recursion overhead).
+
+How can we optimize recursive Fibonacci?
+Ans: By using Dynamic Programming / Memoization, storing intermediate results to avoid recomputation.
+
+3. HuffmanEncoding: 
+
+OUTOUT:
+Enter number of characters: 6
+
+Enter characters and their frequencies:
+Character 1: a
+Frequency of a: 5
+Character 2: b
+Frequency of b: 9
+Character 3: c
+Frequency of c: 12
+Character 4: d
+Frequency of d: 13
+Character 5: e
+Frequency of e: 16
+Character 6: f
+Frequency of f: 45
+
+What is Huffman Encoding?
+Huffman Encoding is a lossless data compression algorithm used to reduce the size of data
+by assigning shorter binary codes to more frequent characters
+and longer codes to less frequent characters.
+So, instead of using a fixed number of bits per character (like ASCII does),
+it uses variable-length codes depending on frequency.
+
+Key Idea
+Frequent characters → short binary codes
+Rare characters → long binary codes
+This minimizes the total number of bits used. 
+
+Why is Huffman considered a greedy algorithm?
+Ans: It makes locally optimal choices — combining two smallest frequencies at each step — to achieve global optimality.
+
+Traversing the tree gives binary codes — ‘0’ for left and ‘1’ for right branches.
+For a,b,c,d,e,f:
+
+ 	 (100)
+        /     \
+      f(45)   (55)
+             /    \
+          e(16)   (39)
+                 /     \
+               d(13)   (26)
+                      /    \
+                    c(12)  (14)
+                          /   \
+                         a(5)  b(9)
+
+
+
+4. 0-1 Knapsack problem using dynamic programming :
+
+What is 0/1 Knapsack Problem?
+Imagine you are a traveler who has a bag (knapsack) that can carry a limited weight.
+You have some items, and each item has:
+A weight (w)
+A value (v) (or profit)
+
+You have to choose which items to put in your bag so that:
+You don’t exceed the weight limit, and
+You get the maximum total value.
+
+Why it’s called “0/1”?
+
+Because for every item, you have two choices only:
+Take it (1)
+Don’t take it (0)
+You cannot take half or part of an item.
+
+In Simple Words
+You have a bag with a weight limit.
+
+You must pick items so that:
+You don’t exceed the limit.
+You get the most value possible.
+Each item can be taken or not (0 or 1).
+
+
+Fractional Knapsack problem using a greedy method:
+
+What is the formula for value-to-weight ratio?
+Ans: ratio = value​/weight
+
+We have items — each has a weight and a value (profit).
+The bag (knapsack) has a maximum weight capacity (W).
+We can take fractions of items — not just whole items.
+So, we calculate value/weight ratio for each item (profit per 1kg).
+Pick items greedily starting from the highest ratio until the bag is full.
+If full item fits → take full.
+If not → take the fraction that fits.
+This gives maximum value for the knapsack.
+
+
+
+Machine Learning: 
+
+Gradient Descent:
+Gradient Descent = “Feeling the slope of the hill and walking downhill slowly until you reach the lowest point.”
+Gradient Descent is a method to find the lowest point (minimum) of a function. It’s like you are standing on a hill, and you want to reach the bottom of the valley. You can’t see the full shape of the land — you only know which direction is downhill where you are standing.
+So, you keep taking small steps downhill until you can’t go down anymore.
+
+That’s gradient descent.
+
+How it works
+The algorithm repeats these steps:
+
+1.Start at a random point (your initial guess 𝑥0).
+2.Find the slope (derivative) of the function at that point.
+	-If slope > 0 → you’re going upward, so move left.
+	-If slope < 0 → you’re going downward, so move right.
+3.Take a step in the opposite direction of the slope:
+
+	𝑥new = 𝑥old − learning rate × 𝑓′(𝑥old) 
+
+4.Repeat until slope becomes almost 0 (flat surface → minimum).
+
+What is Gradient Descent?
+Ans: It’s an optimization algorithm used to find the minimum value of a function by moving in the direction of the negative gradient.
+
+Why do we use the derivative?
+Ans: The derivative shows the slope of the function. We use it to know which direction (left or right) to move to reach the minimum.
+
+
+K-Means clustering:
+
+We are using K-Means clustering — it’s a way to divide data into groups (clusters) based on how similar the values are.
+
+For example:
+If we have sales data, it tries to group together customers or orders that have similar sales values.
+What’s happening in your code
+We took 2 columns:
+ORDERLINENUMBER
+SALES
+
+We scaled the data using StandardScaler → So all numbers come to the same level (fair comparison).
+
+We ran K-Means many times —
+each time with a different number of clusters (K = 1 to 10).
+
+For each K, we calculated WCSS (Within Cluster Sum of Squares).
+This tells how close the points are to their cluster center.
+
+Smaller WCSS = better grouping
+
+The graph you got (Elbow graph)
+X-axis = Number of clusters (K)
+Y-axis = WCSS (error within clusters)
+
+You can see:
+At first (K = 1, 2, 3), the WCSS drops quickly.
+After around K = 3 or 4, it starts flattening (dropping slowly).
+
+What it means
+That bend point (the elbow) is where making more clusters doesn’t help much.
+So the best number of clusters is around 3 or 4.
+That’s why in your output, clusters like 0, 1, 2, 3… appear — they’re the groups K-Means made.
+
+
+Bank_Customer:
+
+plt.figure(figsize=(10,7)) sns.heatmap(cm, annot = True) plt.xlabel('Predicted') plt.ylabel('Truth') how to chnage colour:
+
+plt.figure(figsize=(10,7))
+sns.heatmap(cm, annot=True, cmap='coolwarm')   # change color here
+plt.xlabel('Predicted')
+plt.ylabel('Truth')
+plt.show()
+
+Colors: Blues, Greens, Reds, Coolwarm
+
+pandas, numpy → handle data
+seaborn, matplotlib → for data visualization
+train_test_split → split dataset into training and testing
+StandardScaler → normalize (scale) features
+Sequential, Dense, Input → used to build ANN model
+confusion_matrix, accuracy_score → evaluate the model
+
+What is ANN?	Artificial Neural Network — works like a human brain using neurons (nodes) connected by weights.
+Why use scaling?	To make all features contribute equally to learning.
+What is ReLU(Rectified Linear Unit)?	Activation function that keeps positive values same and turns negatives to zero.
+Why sigmoid at output?	Converts output into probability (between 0 and 1).
+What is binary cross-entropy?	It measures how far predictions are from actual 0/1 values.
+What does ‘epochs’ mean?	Number of times model trains on the whole dataset.
+What does ‘accuracy’ mean?	How many predictions were correct out of all predictions.
+
+K-Nearest Neighbors (KNN):
+
+Choose K = 7 → means we look at the 7 nearest neighbors around the test point.
+For each test patient → find the 7 closest patients in the training data.
+Count how many of those neighbors are diabetic (1) or not (0).
+Predict the majority class as the result.
+
+Confusion Matrix Explained
+		Predicted 0		Predicted 1
+Actual 0	True Negative (TN)	False Positive (FP)
+Actual 1	False Negative (FN)	True Positive (TP)
+
+Accuracy = (TN + TP) / (Total cases)
+Error Rate = 1 - Accuracy
+Precision = TP / (TP + FP) → how many predicted positives were correct
+Recall = TP / (TP + FN) → how many actual positives we detected correctly
+F1-Score → balance between precision and recall
+
+Uber_Ride: 
+
+Linear Regression: 
+What is Linear Regression?
+Linear Regression is a method used to predict one value using another by drawing the best-fitting straight line through the data.
+In short: it finds a line that best shows the relationship between input (X) and output (Y).
+
+The basic equation:
+Y=mX+c
+
+Symbol	Meaning
+Y	Dependent variable (the thing you want to predict)
+X	Independent variable (the input)
+m	Slope of the line (how much Y changes when X changes)
+c	Intercept (where the line crosses the Y-axis)
+
+Random Forest (Definition): Random Forest is a machine learning algorithm that uses many decision trees to make predictions.
+Each tree gives its own output, and the final result is based on the majority vote (for classification) or the average (for regression).
+It improves accuracy and reduces overfitting.
+
+Example: Predicting whether a customer will buy a product (Yes/No) using many trees built from random samples of data.
+
+Naive Bayes (Definition): Naive Bayes is a probabilistic classifier based on Bayes’ Theorem, which calculates the probability of each class given the input data.
+It assumes that all input features are independent of each other (that’s why it’s called “Naive”).
+
+Example: Used in spam detection — predicts whether an email is Spam or Not Spam.
+
+Confusion Matrix (Definition): A Confusion Matrix is a table used to show the performance of a classification model.
+It compares the actual labels with the predicted labels, showing how many predictions were correct or incorrect.
+
+Example:
+		Predicted Yes		Predicted No
+Actual Yes	True Positive (TP)	False Negative (FN)
+Actual No	False Positive (FP)	True Negative (TN)
+
+MSE(mean square error)
+MAE(mean absolute error)
+RMSE(root mean squared error)
+R2(Coefficient of Determination)
+
+
+Blockchain Technology:
+
+Bank: 
+
+pragma solidity ^0.8.0; → means this contract works with compiler version 0.8.0 or higher.
+pragma: instruction or directive
+solidity: specifies that this pragma apply to solidity compiler.
+
+contract Bank {
+A contract in Solidity is like a class in Java — it contains data and functions that run on the blockchain.
+
+mapping(address => uint256) private balances;
+mapping works like a key-value pair.
+
+Here:
+key → user’s wallet address
+value → that user’s balance
+
+msg.sender → the wallet address of the person calling this function.
+
+The payable keyword means this function can receive Ether.
+
+fallback(): Runs when unknown function or data is sent
+
+receive(): Runs automatically when Ether sent with no data
+
+What is a smart contract?
+A self-executing code stored on the blockchain that runs automatically when conditions are met.
+
+Employee:
+
+Concept		Description
+Struct		Used to create custom data type (Employee)
+Array		Stores multiple employee records
+Public		Allows data visibility to all users
+Push()		Adds new employee to the array
+Require()	Used for error handling
+View		Function that only reads data (doesn’t modify blockchain)
+
+StudentRegistry:
+
+Events are used for logging information on the blockchain (like console logs).
